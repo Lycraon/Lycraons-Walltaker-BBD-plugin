@@ -208,7 +208,7 @@ function createCSS(){
 
 //--------------------------------------------------------------
 
-module.exports = class LTP{
+module.exports = class LWP{
 	
 
 
