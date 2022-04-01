@@ -1,36 +1,41 @@
 /**
     * @name LWP
-	* @version 0.0.1	
+    * @version 0.0.1	
     * @description Test
     * @author Lycaon
+    * @source https://github.com/Lycraon/Lycraons-Walltaker-BBD-plugin
+    * @updateUrl https://github.com/Lycraon/Lycraons-Walltaker-BBD-plugin/blob/main/LWP.plugin.js
     */
 	
 	
 
-	
-	const config = {
-    info: {
-        name: "Lycaons Walltaker (BBD-)Plugin",
-        authors: [
-            {
-                name: "Lycaon"
-            }
-        ],
-        version: "0.0.1",
-        description: "Sets your BBD Background as an e621 post from your Walltaker link"
-    },
-    changelog: [
-        {
-            title: "Fixes",
-            type: "fixed",
-            items: [
-                "nothing"
-            ]
-        }
+//const config for Plugin info
+const config = {
+	info: {
+		name: "Lycaons Walltaker (BBD-)Plugin",
+		authors: [
+	 		{
+               		name: "Lycaon"
+            		}
+        	],
+        	version: "0.0.1",
+        	description: "Sets your BBD Background as an e621 post from your Walltaker link"
+    	},
+	//To-Do: show changelog on first load
+    	changelog: [
+        	{
+			title: "Fixes",
+			type: "fixed",
+			items: [
+				"nothing"
+			]
+        	}
     ],
     defaultConfig: []
 };
 
+
+//Settings for [plugin].config.json with default values
 var settings = {
 		"linkID": "",
 		"interval": "15000",
@@ -44,16 +49,19 @@ var settings = {
 		"bgFit": "auto 100vh"
 	}
 
+//const base id for style element in header
 const cssID = "LWP_css";
 
-
+//last url from JSON
 var lastUrl = "";
 
+//save settings into [plugin].config.json
 function saveSettings(){
 	
 	BdApi.saveData(config.info.name, "settings", settings);
 }
 
+//load settings into [plugin].config.json
 function loadSettings(){
 	
 	var tmp = BdApi.loadData(config.info.name,"settings");
@@ -61,6 +69,7 @@ function loadSettings(){
 }
 
 
+//request .json from url
 function getJSON(url,callback) {
   let xhr = new XMLHttpRequest();
   xhr.onload = function () {
@@ -71,16 +80,20 @@ function getJSON(url,callback) {
   xhr.send();
 }
 
+
+//get .json conten in usable format
 function getUsefulContents(url,callback) {
   getJSON( url, data => callback(JSON.parse(data)));
 }
 
+//Get update from url(to .json) 
+// and update stylesheet(2)
 function updateJSON(){
 	var url = "https://walltaker.joi.how/links/" + settings.linkID + ".json";
 	
 	getUsefulContents(url, data => {
 		
-		//update stylesheet
+		//Update stylesheet(2)
 		updateStyleSheet(data);
 	
 	});
@@ -90,11 +103,16 @@ function updateJSON(){
 	}
 }
 
+//Update stylesheet(2)
 function updateStyleSheet(data){	
 
+		//check if data recieved and if post changed
 		if(data && lastUrl != data.post_url){ 
 
+			//set last Url
 			lastUrl=data.post_url
+			
+			//Change background
 			var inner = "";
 			inner += "body{";
 
@@ -105,6 +123,7 @@ function updateStyleSheet(data){
 		}	
 }
 
+//delete all instances of 1st stylesheet
 function deleteCSS1(){
 	while(document.getElementById(cssID)){
 		document.getElementById(cssID).remove();
@@ -112,14 +131,20 @@ function deleteCSS1(){
 	
 }
 
+//delete all instances of 2nd stylesheet
 function deleteCSS2(){
 	while(document.getElementById(cssID + "_1")){
 			document.getElementById(cssID+ "_1").remove();
 		}
 }
 
+//create stylesheet(1)/css for
 function createCSS(){
+	
 	var inner = "";
+	
+	
+	//:root
 	 inner += ":root{";
 	 inner += 	"--background-secondary:"+settings["secondaryBG"]+";";
 	 inner += 	"--background-primary:  "+settings["primaryBG"]+";";
@@ -128,7 +153,7 @@ function createCSS(){
 	 inner += "}";
 
 
-	 
+	 //body
 	 inner += "body{"
 	 
 	 inner +=	"width: 100%;"
@@ -138,26 +163,29 @@ function createCSS(){
 	 inner += 	"background-size: "+settings["bgFit"]+";"
 	 inner +="}"
 	 
+	//titlebar of Discord window
 	 inner += ".titleBar-1it3bQ {";
 	 inner += 	"margin-top: 0;";
 	 inner += 	"padding-top: 0.8em;";
 	 inner += 	"background: "+settings["titleBG"]+";";
 	 inner += "}";
 
+	 //content of titlebar of Discord window
 	 inner += ".titleBar-1it3bQ > * {";
 	 inner += 	"top: -0.4em;";
 	 inner += "}";
 	 
-	 
+	 //titlebar of chat
 	 inner += ".container-ZMc96U.themed-Hp1KC_ {";
 	 inner += 	"background: "+settings["chatheaderBG"]+";";
 	 inner += "}";
 	 
-	 
+	 //sidebar
 	 inner += ".scroller-3X7KbA {";
 	 inner += 	"background: "+settings["sidebarBG"]+";";
 	 inner += "}";
-	 
+	
+	//messages
 	 inner += ".messageListItem-ZZ7v6g {";
 	 inner += 	"background: "+settings["messageBG"]+";";
 	 inner += 	"padding-top: 0.5em;";
@@ -166,6 +194,7 @@ function createCSS(){
 	 inner += 	"box-shadow: 0 0.1em 0.4em rgba(0,0,0,0.48);";
 	 inner += "}";
 	 
+	//channels in sidebar
 	 inner += ".content-1gYQeQ {";
 	 inner += "border-radius: 0;";
 	 inner += "marginRight: 0;";
@@ -219,7 +248,7 @@ start(){
 	//load Saved Data
 	loadSettings();
 	
-	//create new Stylesheet
+	//create new Stylesheet(s)
 	var style = document.createElement('style');
 	style.id = cssID;
 	style.type = 'text/css';
@@ -230,13 +259,15 @@ start(){
 	style2.type = 'text/css';
 	document.head.appendChild(style2);
 	
+	//create const stylesheet/css
 	createCSS();
 	
+	//start checks / .json updates
 	updateJSON();
 }
 
 
-
+//When Openin Settings in plugins in tab
 getSettingsPanel(){
 
 	let tmp = document.createElement("div");
@@ -312,9 +343,9 @@ getSettingsPanel(){
 }
 
 
-
 stop(){
-	//reset lastUrl
+	//reset lastUrl 
+	//(remove this if last picture should load on next start before new post is found)
 	lastUrl = ""
 	
 	//remove stylesheet(s)
