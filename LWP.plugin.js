@@ -18,7 +18,7 @@ const config = {
                		name: "Lycaon"
             		}
         	],
-        	version: "0.0.1",
+        	version: "0.0.2",
         	description: "Sets your BBD Background as an e621 post from your Walltaker link"
     	},
 	//To-Do: show changelog on first load
