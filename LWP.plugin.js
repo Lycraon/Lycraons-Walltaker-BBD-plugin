@@ -1,10 +1,10 @@
 /**
     * @name LWP
-    * @version 0.0.1	
+    * @version 0.0.2	
     * @description Test
     * @author Lycaon
     * @source https://github.com/Lycraon/Lycraons-Walltaker-BBD-plugin
-    * @updateUrl https://github.com/Lycraon/Lycraons-Walltaker-BBD-plugin/blob/main/LWP.plugin.js
+    * @updateUrl https://raw.githubusercontent.com/Lycraon/Lycraons-Walltaker-BBD-plugin/main/LWP.plugin.js
     */
 	
 	
