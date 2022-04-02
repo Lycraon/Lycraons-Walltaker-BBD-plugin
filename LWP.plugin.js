@@ -196,11 +196,16 @@ function createCSS(){
 	 
 	//channels in sidebar
 	 inner += ".content-1gYQeQ {";
-	 inner += "border-radius: 0;";
-	 inner += "marginRight: 0;";
-	 inner += "width: 100%;";
+	 inner += 	"border-radius: 0;";
+	 inner += 	"marginRight: 0;";
+	 inner += 	"width: 100%;";
 	 inner += 	"border-bottom: 0.1em solid black;";
 	 inner += 	"box-shadow: 0 0.25em 0.4em rgba(0,0,0,0.48);";
+	 inner += "}";
+	
+	//friends-page background
+	 inner += ".container-2cd8Mz {";
+	 inner += 	"background: "+settings["secondaryBG"]+" !important;";
 	 inner += "}";
 	 
 	 document.getElementById(cssID).innerHTML = inner;
