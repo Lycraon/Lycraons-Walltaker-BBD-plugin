@@ -7,7 +7,7 @@ This is just a fun project.
 The **more resurceful way** of showing your background would be to **activate transparent window** in BBD settings and s
 elect an transparent themen (one with transparent background don't just look at tag or name).
 
-#To-Do:
+# To-Do:
 - Show Pictures from folders. (/ Get pictures + data from Walltaker desktop-client) 
   this would save internet capacity while useing other clients.
   
