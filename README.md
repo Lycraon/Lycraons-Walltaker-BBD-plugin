@@ -31,3 +31,7 @@ Please **deactivate themes** for this plugin to work correctly.
 - Implement an option to change interval while Game-Activity is active
 
 - Enable text input for Image-Fit for advanced users.
+
+- Show set_by (probably in titlebar)
+
+- add button show e621(post)
