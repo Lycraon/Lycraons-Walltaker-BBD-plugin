@@ -1,3 +1,5 @@
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/M4M7CUITE)
+
 # Lycraons-Walltaker-BBD-plugin
 A plugin for BandagedBetterDiscord that sets your Background to an e621 post from your Walltaker link
 
